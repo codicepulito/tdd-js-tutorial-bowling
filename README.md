@@ -277,3 +277,60 @@ var Bowling = {
   }
 };
 ```
+### Step 7: game with all the frames in the closing and final shot that hit a pin
+Position yourself in the next stage of the project by running the following command
+```
+git checkout step7
+```
+If all the shots we'll have a closing we are entitled to an additional shot. Assuming that the extra shot he will drop a single pin, the end result will be of 182 points
+```
+  it("game all the frames in the closing and final shot that hit a pin", function() {
+    var shots = [[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1,1]];
+    expect(bowling.calcolateScore(shots)).toEqual(182);
+  });
+```
+to overcome even the sixth modify tests, in such a way to compute, in the case of Strike, the first pitch of the next frame. In the event that we are the last frame, however, we will have to add an extra kick.
+```
+function Bowling() {}
+
+Bowling.prototype = {
+  calcolateScore: function(shots) {
+    var me = this;
+    var score = 0;
+    var firstNextShoto = 0;
+    var secondNextShot = 0;
+
+    shots.forEach(function(shot, index) {
+      if (index===9) {
+        firstNextShoto = shot[2];
+        secondNextShot = 0;
+      } else {
+        firstNextShoto = shots[index+1][0];
+        secondNextShot = shots[index+1][1];
+      }
+
+      if (me.isStrike(shot)) {
+        if (me.isStrike(shots[index+1])) {
+          score += shot[0] + firstNextShoto + shots[index+2][0];
+        } else {
+          score += shot[0] + firstNextShoto + secondNextShot;
+        }
+      } else if (me.isSpare(shot)) {
+        score += shot[0] + shot[1] + firstNextShoto;
+      } else {
+        score += shot[0] + shot[1];
+      }
+    });
+
+    return score;
+  },
+
+  isSpare: function(shot) {
+    return ((shot[0] + shot[1]) === 10);
+  },
+
+  isStrike: function(shot) {
+    return (shot[0] === 10);
+  }
+};
+```
