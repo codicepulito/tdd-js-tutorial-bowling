@@ -22,6 +22,7 @@ Git tags:
 - step6: refactoring
 - step7: game all the frames in Spare and final shot that hit a pin
 - step8: game all the frames in strike
+- step9: Cleaned up the code by reducing cyclomatic complexity and readability
 
 The practice of TDD takes place in three distinct phases: Red Flag, Green Flag and Refactoring.
 The first phase (Red Flag) requires that the test wrote fails his first run, ensuring that the test itself was well written.
