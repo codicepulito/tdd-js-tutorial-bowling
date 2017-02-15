@@ -1,63 +1,63 @@
-#Javascript Test Drive Development Tutorial #
+# Tutorial in italiano di Test Drive Development in javascript #
 [![Build Status](https://travis-ci.org/gianlucaciarcelluti/tdd-js-tutorial-bowling.svg?branch=master)](https://travis-ci.org/gianlucaciarcelluti/tdd-js-tutorial-bowling)
 [![codecov](https://codecov.io/gh/gianlucaciarcelluti/tdd-js-tutorial-bowling/branch/master/graph/badge.svg)](https://codecov.io/gh/gianlucaciarcelluti/tdd-js-tutorial-bowling)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![Code Climate](https://codeclimate.com/github/gianlucaciarcelluti/tdd-js-tutorial-bowling/badges/gpa.svg)](https://codeclimate.com/github/gianlucaciarcelluti/tdd-js-tutorial-bowling)
 [![Issue Count](https://codeclimate.com/github/gianlucaciarcelluti/tdd-js-tutorial-bowling/badges/issue_count.svg)](https://codeclimate.com/github/gianlucaciarcelluti/tdd-js-tutorial-bowling)
+[![API Doc](https://doclets.io/gianlucaciarcelluti/tdd-js-tutorial-bowling/master.svg)](https://doclets.io/gianlucaciarcelluti/tdd-js-tutorial-bowling/master)
 
-*Read this in other languages: [Italian](README.it.md).*
+*Read this in other languages: [English](README.md).*
 
-This tutorial has the objective to illustrate the approach of TDD oriented to an implementation for successive approximations that leads the developer to focus on the problems as they arise.
+Questo tutorial ha l'obiettivo di illustrare l'approccio del TDD orientato ad una implementazione per approssimazioni successive che porta lo sviluppatore a concentrarsi sulle problematiche man mano che esse si presentano.
 
-Even today, many developers are used to carry out a comprehensive analysis of the development of a project at last to find a working solution to implement; this approach poses great difficulties when the problem to be solved is complex, in particular by discouraging people who have not had the opportunity to experience appropriate experience.
+Ancora oggi, molti sviluppatori sono abituati a svolgere una analisi complessiva sullo sviluppo di un progetto alfine di trovare una soluzione funzionante da poter implementare; questo approccio pone delle grandi difficoltà quando il problema da risolvere è complesso, scoraggiando in particolare le persone che non hanno avuto modo di sperimentare esperienze adeguate.
 
-Through the use of the TDD method, the solution is built in stages and incremental approximations that make it much more simple and within the reach of all the management of a complex problem.
+Attraverso l'utilizzo del procedimento TDD, la soluzione viene costruita per fasi e approssimazioni incrementali che rendono molto più semplice e alla portata di tutti la gestione di un problema complesso.
 
 Git tags:
 
-- step1: initial project state
-- step2: game with all the shots that hit a pin
-- step3: game with the first frame in Spare and all the others that hit a pin
-- step4: game with the first frame in Strike and all the others that hit a pin
-- step5: game with the first two frames in Strike and all the others that hit a pin
-- step6: refactoring
-- step7: game all the frames in Spare and final shot that hit a pin
-- step8: game all the frames in strike
-- step9: Cleaned up the code by reducing cyclomatic complexity and readability
+- passo1: stato iniziale del progetto
+- passo2: partita con tutti i tiri che colpiscono un birillo
+- passo3: partita con primo frame in chiusura e tutti gli altri che colpiscono un birillo
+- passo4: partita con primo frame in strike e tutti gli altri che colpiscono un birillo
+- passo5: partita con primi due frame in strike e tutti gli altri che colpiscono un birillo
+- passo6: refactoring
+- passo7: partita con tutti i frame in chiusura e ultimo tiro che colpisce un birillo
+- passo8: partita con tutti i frame in strike
+- passo9: ripulito il codice riducendo la complessità ciclomatica e la leggibilità
 
-The practice of TDD takes place in three distinct phases: Red Flag, Green Flag and Refactoring.
-The first phase (Red Flag) requires that the test wrote fails his first run, ensuring that the test itself was well written.
+La pratica del TDD si svolge in 3 fasi distinte: Red Flag, Green Flag e Refactoring.
+La prima fase (Red Flag) richiede che il test scritto fallisce alla sua prima esecuzione, a garanzia che il test stesso sia stato scritto bene.
 
-The second phase requires writing code you are testing, making sure to write what is necessary to perform the test successfully
+La seconda fase richiede la scrittura del codice che si sta testando, facendo attenzione a scrivere lo stretto necessario per eseguire il test con successo.
 
-In the third and final phase, we can focus on the analysis of the code you just wrote, verifying the possibility to improve its readability and elegance.
+Nella terza ed ultima fase, possiamo concentrarci sull'analisi del codice appena scritto, verificando la possibilità di migliorare la sua leggibilità ed eleganza.
 
-### Project Creation
-Clone the project through the command
+### Creazione del progetto
+Clonate il progetto tramite il comando
 ```
 git clone https://github.com/codicepulito/tdd-js-tutorial-bowling
 ```
-then move to the newly created folder and download the necessary libraries with the command
+poi spostatevi nella cartella appena creata e scaricate le librerie necessarie tramite il comando
 ```
 npm install
 ```
 
-### Step1: Start of the project
-Position yourself in the initial project status by running the following command
+### Passo1: stato iniziale del progetto
+Posizionatevi nello stato iniziale del progetto lanciando il seguente comando
 ```
 git checkout step1
 ```
-We start with an initial test to verify that all the done vacuum shots give back as a result zero points by writing the following code in the test file / bowlingTest.js
+Partiamo con un test iniziale per verificare che tutti i tiri fatti a vuoto restituiscano come risultato zero punti scrivendo il seguente codice nel file test/bowlingTest.js
 ```
 describe("bowling", function() {
-
     it("game with all the empty shots", function() {
         var shots = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]];        
         expect(Bowling.calculateScore(shots)).toEqual(0);
     });    
 });
 ```
-then we write the following function to be tested within the src / file bowling.js
+successivamente scriviamo la seguente funzione da testare all'interno del file src/bowling.js
 ```
 function Bowling () {}
 
@@ -67,7 +67,7 @@ Bowling.prototype = {
   }
 }
 ```
-launching the test with the following command should get a test failure as follows
+lanciando il test con il seguente comando dovremmo ottenere il fallimento del test come segue
 ```
 tdd-js-tutorial-bowling: ./node_modules/.bin/karma start
 04 01 2017 00:23:13.986:WARN [karma]: No captured browser, open http://localhost:9876/
@@ -81,17 +81,17 @@ PhantomJS 2.1.1 (Mac OS X 0.0.0) bowling partita con tutti i tiri a vuoto FAILED
 	loaded@http://localhost:9876/context.js:151:17
 PhantomJS 2.1.1 (Mac OS X 0.0.0): Executed 1 of 1 (1 FAILED) ERROR (0.007 secs / 0.004 secs)
 ```
-at this point we move to phase 2 writing
+a questo punto passiamo alla fase 2 scrivendo
 ```
 function Bowling () {}
 
 Bowling.prototype = {
   calculateScore: function (shots) {
-    return
+    return 0
   }
 }
 ```
-re-launching the test, this time we should get its running successfully
+rilanciando il test, questa volta dovremmo ottenere la sua esecuzione con successo
 ```
 tdd-js-tutorial-bowling: ./node_modules/.bin/karma start
 04 01 2017 00:25:53.304:WARN [karma]: No captured browser, open http://localhost:9876/
@@ -102,19 +102,19 @@ tdd-js-tutorial-bowling: ./node_modules/.bin/karma start
 PhantomJS 2.1.1 (Mac OS X 0.0.0): Executed 1 of 1 SUCCESS (0.007 secs / 0.004 secs)
 ```
 
-### Step2: game with all the shots that hit a pin
-Position yourself in the next stage of the project by running the following command
+### Passo2: partita con tutti i tiri che colpiscono un birillo
+Posizionatevi nello stadio successivo del progetto lanciando il seguente comando
 ```
 git checkout step2
 ```
-We continue with the addition of the test in the test file / bowlingTest.js to verify that all the done shots hit a pin and that the end result is 20 points
+Proseguiamo con l'aggiunta del test nel file test/bowlingTest.js per verificare che tutti i tiri fatti colpiscono un birillo e che il risultato finale sia di 20 punti
 ```
-  it("game with all the shots that hit a pin", function() {
+ it("game with all the shots that hit a pin", function() {
     var shots = [[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]];
     expect(Bowling.calculateScore(shots)).toEqual(20);
   });
 ```
-therefore, our function will succeed only to meet the first test and to overcome also the second will need to be modified, for example, in the following manner
+quindi, la nostra funzione riuscirà a soddisfare solamente il primo test e per superare anche il secondo avrà bisogno di essere modificata, per esempio, nella seguente maniera
 ```
 var Bowling = {
   calculateScore: function(shots) {
@@ -129,19 +129,19 @@ var Bowling = {
 };
 ```
 
-### Step3: playing with the first frame when closed and all the others that hit a pin
-Position yourself in the next stage of the project by running the following command
+### Passo3: partita con primo frame in chiusura e tutti gli altri che colpiscono un birillo
+Posizionatevi nello stadio successivo del progetto lanciando il seguente comando
 ```
 git checkout step3
 ```
-If the first shot we will make a closing (Spare) and all other shots hit a pin, the end result will be to 29 points
+Se nel primo tiro faremo una chiusura (Spare) e tutti gli altri tiri colpiscono un birillo, il risultato finale sarà di 29 punti
 ```
   it("game with the first frame when closed and all the others that hit a pin", function() {
     var shots = [[9,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]];
     expect(Bowling.calculateScore(shots)).toEqual(29);
   });
 ```
-therefore, our function will succeed only to meet the first two tests and to overcome also the third will need to be modified, in such a way to compute, in the event of closure, the first next shot
+quindi, la nostra funzione riuscirà a soddisfare solamente i primi due test e per superare anche il terzo avrà bisogno di essere modificata, in maniera tale da computare, in caso di chiusura, il primo tiro successivo 
 ```
 var Bowling = {
   calculateScore: function(shots) {
@@ -160,19 +160,19 @@ var Bowling = {
 };
 ```
 
-### Step4: playing with the first frame in the strike and all the others that hit a pin
-Position yourself in the next stage of the project by running the following command
+### Passo4: partita con primo frame in strike e tutti gli altri che colpiscono un birillo
+Posizionatevi nello stadio successivo del progetto lanciando il seguente comando
 ```
 git checkout step4
 ```
-If the first shot we will make a Strike and all other shots hit a pin, the end result will be 30 points
+Se nel primo tiro faremo uno Strike e tutti gli altri tiri colpiscono un birillo, il risultato finale sarà di 30 punti
 ```
   it("game with the first frame in strike and all the others that hit a pin", function() {
     var shots = [[10],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]];
     expect(Bowling.calculateScore(shots)).toEqual(30);
   });
 ```
-to overcome even the fourth modify tests, in such a way to compute, in the case of Strike, the 2 shots of the next Frame
+per superare anche il quarto test modifichiamo, in maniera tale da computare, in caso di Strike, i 2 tiri del Frame successivo 
 ```
 var Bowling = {
   calculateScore: function(shots) {
@@ -192,19 +192,20 @@ var Bowling = {
   }
 };
 ```
-### Step5: playing with the first two frames in the strike and all the others that hit a pin
-Position yourself in the next stage of the project by running the following command
+
+### Passo5: partita con primi due frame in strike e tutti gli altri che colpiscono un birillo
+Posizionatevi nello stadio successivo del progetto lanciando il seguente comando
 ```
 git checkout step5
 ```
-If the first shot we will make a Strike and all other shots hit a pin, the end result will be 49 points
+Se nei primi tiro faremo uno Strike e tutti gli altri tiri colpiscono un birillo, il risultato finale sarà di 49 punti
 ```
   it("game with the first two frames in strike and all the others that hit a pin", function() {
     var shots = [[10],[10],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]];
     expect(Bowling.calculateScore(shots)).toEqual(49);
   });
 ```
-to overcome even the fifth modify tests, in such a way to compute, in the case of Strike, the 2 shots of the next Frame
+per superare anche il quinto test modifichiamo, in maniera tale da computare, in caso di Strike, i 2 tiri del Frame successivo 
 ```
 var Bowling = {
   calculateScore: function(shots) {
@@ -228,25 +229,26 @@ var Bowling = {
   }
 };
 ```
-### STEP6: refactoring
-Position yourself in the next stage of the project by running the following command
+
+### Passo6: refactoring
+Posizionatevi nello stadio successivo del progetto lanciando il seguente comando
 ```
 git checkout step6
 ```
-Analyzing the code, we can note that there are cases that more than once are checked, such as the case of the Strike (shot [0] == 10) and the case of the Spare ((shot [0] + shot [1] ) == 10); philosophy [DRY] (https://it.wikipedia.org/wiki/Don't_Repeat_Yourself) (Do not repeat yourself) suggests that we make a Refactoring extracting repeated checks within a designated external function.
-The functions may be so:
+Analizzando il codice, possiamo notare che ci sono casi che vengono controllati più di una volta, come ad esempio il caso dello Strike (tiro[0] == 10) e il caso dello Spare ((tiro[0] + tiro[1]) == 10); la filosofia [DRY] (https://it.wikipedia.org/wiki/Don't_Repeat_Yourself) (Don't repeat yourself) ci suggerisce di fare un Refactoring estraendo i controlli ripetuti all'interno di una apposita funzione esterna.
+Le funzioni potrebbero essere così:
 ```
 isSpare: function(shot) {
   return ((shot[0] + shot[1]) === 10);
 },
 ```
-and
+e
 ```
 isStrike: function(shot) {
   return (shot[0] === 10);
 }
 ```
-replacing the previous code, we get
+sostituendo nel codice precedente, otteniamo
 ```
 var Bowling = {
   calculateScore: function(shots) {
@@ -279,19 +281,19 @@ var Bowling = {
   }
 };
 ```
-### Step 7: game with all the frames in the closing and final shot that hit a pin
-Position yourself in the next stage of the project by running the following command
+### Passo7: partita con tutti i frame in chiusura e ultimo tiro che colpisce un birillo
+Posizionatevi nello stadio successivo del progetto lanciando il seguente comando
 ```
 git checkout step7
 ```
-If all the shots we'll have a closing we are entitled to an additional shot. Assuming that the extra shot he will drop a single pin, the end result will be of 182 points
+Se in tutti i tiri faremo una chiusura abbiamo diritto ad un tiro aggiuntivo. Ipotizzando che il tiro aggiuntivo faccia cadere un solo birillo, il risultato finale sarà di 182 punti
 ```
   it("game all the frames in the closing and final shot that hit a pin", function() {
     var shots = [[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1,1]];
     expect(bowling.calculateScore(shots)).toEqual(182);
   });
 ```
-to overcome even the sixth modify tests, in such a way to compute, in the case of Strike, the first pitch of the next frame. In the event that we are the last frame, however, we will have to add an extra kick.
+per superare anche il sesto test modifichiamo, in maniera tale da computare, in caso di Strike, il primo tiro del Frame successivo. Nel caso in cui ci troviamo all'ultimo frame, invece, dovremo sommare un tiro aggiuntivo.
 ```
 function Bowling() {}
 
@@ -337,19 +339,19 @@ Bowling.prototype = {
 };
 ```
 
-### Step8: game with all the frames in strike
-Position yourself in the next stage of the project by running the following command
+### Passo8: partita con tutti i frame in strike
+Posizionatevi nello stadio successivo del progetto lanciando il seguente comando
 ```
 git checkout step8
 ```
-If all the shots we'll make an Strike, the end result will be the maximum score of a bowling game that is 300 points
+Se in tutti i tiri faremo uno Strike, il risultato finale sarà il massimo punteggio di una partita di Bowling che è di 300 punti
 ```
   it("game with all the frames in strike", function() {
     var shots = [[10],[10],[10],[10],[10],[10],[10],[10],[10],[10,10,10]];
     expect(bowling.calculateScore(shots)).toEqual(300);
   });
 ```
-to overcome even the seventh and last modify tests, in such a way to compute, in the case of Strike, the 2 shots of the next frame but in case we are in the last frame, where, instead, we will have only one sommarne next.
+per superare anche il settimo ed ultimo test modifichiamo, in maniera tale da computare, in caso di Strike, i 2 tiri del Frame successivo tranne nel caso in cui ci troviamo all'ultimo frame dove, invece, dovremo sommarne uno solo successivo.
 ```
 function Bowling() {}
 
@@ -419,9 +421,9 @@ Bowling.prototype = {
 ```
 
 ### Step9: refactoring
-Cleaned up the code by reducing cyclomatic complexity and readability
+Ripulito il codice riducendo la complessità ciclomatica e la leggibilità
 
-Position yourself in the next stage of the project by running the following command
+Posizionatevi nello stadio successivo del progetto lanciando il seguente comando
 ```
 git checkout step9
 ```
@@ -546,12 +548,12 @@ Bowling.prototype = {
 
 ```
 
-### Conclusions
-Our first exercise of Test Drive Development has ended.
-I hope to be able to transfer the benefits that this type of approach brings with it.
+### Conclusioni
+Il nostro primo esercizio di Test Drive Development è terminato.
+Spero di essere riuscito a trasferire i benefici che questo tipo di approccio porta con se.
 
-I personally think that should be the ABC of every developer because once it became a habit, the quality of the finished product and the personal capacity of each one increases considerably.
+Ritengo personalmente che dovrebbe essere l'ABC di ogni sviluppatore poichè una volta diventata abitudine, la qualità del prodotto finito e la capacità personale di ciascuno aumenta in maniera considerevole.
 
-If you find errors, inaccuracies, difficulties, failures or simply suggestions to improve it further, do not hesitate to signal them directly into Issues or if you prefer via email at gianluca@ciarcelluti.it
+Se trovate errori, imprecisioni, difficoltà, malfunzionamenti o semplicemente suggerimenti per migliorare ulteriormente, non esitate a segnalarmeli direttamente nelle Issues o se preferite via email all'indirizzo gianluca@ciarcelluti.it
 
-Thank you all :-)
+Grazie a tutti :-)
