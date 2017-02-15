@@ -51,7 +51,7 @@ describe("bowling", function() {
 
     it("game with all the empty shots", function() {
         var shots = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]];        
-        expect(Bowling.calcolateScore(shots)).toEqual(0);
+        expect(Bowling.calculateScore(shots)).toEqual(0);
     });    
 });
 ```
@@ -60,7 +60,7 @@ then we write the following function to be tested within the src / file bowling.
 function Bowling () {}
 
 Bowling.prototype = {
-  calcolateScore: function (shots) {
+  calculateScore: function (shots) {
     return
   }
 }
@@ -109,13 +109,13 @@ We continue with the addition of the test in the test file / bowlingTest.js to v
 ```
   it("game with all the shots that hit a pin", function() {
     var shots = [[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]];
-    expect(Bowling.calcolateScore(shots)).toEqual(20);
+    expect(Bowling.calculateScore(shots)).toEqual(20);
   });
 ```
 therefore, our function will succeed only to meet the first test and to overcome also the second will need to be modified, for example, in the following manner
 ```
 var Bowling = {
-  calcolateScore: function(shots) {
+  calculateScore: function(shots) {
     var score = 0;
         
     shots.forEach(function(shots, index) {
@@ -136,13 +136,13 @@ If the first shot we will make a closing (Spare) and all other shots hit a pin, 
 ```
   it("game with the first frame when closed and all the others that hit a pin", function() {
     var shots = [[9,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]];
-    expect(Bowling.calcolateScore(shots)).toEqual(29);
+    expect(Bowling.calculateScore(shots)).toEqual(29);
   });
 ```
 therefore, our function will succeed only to meet the first two tests and to overcome also the third will need to be modified, in such a way to compute, in the event of closure, the first next shot
 ```
 var Bowling = {
-  calcolateScore: function(shots) {
+  calculateScore: function(shots) {
     var score = 0;
 
     shots.forEach(function(shot, index) {
@@ -167,13 +167,13 @@ If the first shot we will make a Strike and all other shots hit a pin, the end r
 ```
   it("game with the first frame in strike and all the others that hit a pin", function() {
     var shots = [[10],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]];
-    expect(Bowling.calcolateScore(shots)).toEqual(30);
+    expect(Bowling.calculateScore(shots)).toEqual(30);
   });
 ```
 to overcome even the fourth modify tests, in such a way to compute, in the case of Strike, the 2 shots of the next Frame
 ```
 var Bowling = {
-  calcolateScore: function(shots) {
+  calculateScore: function(shots) {
     var score = 0;
 
     shots.forEach(function(shot, index) {
@@ -199,13 +199,13 @@ If the first shot we will make a Strike and all other shots hit a pin, the end r
 ```
   it("game with the first two frames in strike and all the others that hit a pin", function() {
     var shots = [[10],[10],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]];
-    expect(Bowling.calcolateScore(shots)).toEqual(49);
+    expect(Bowling.calculateScore(shots)).toEqual(49);
   });
 ```
 to overcome even the fifth modify tests, in such a way to compute, in the case of Strike, the 2 shots of the next Frame
 ```
 var Bowling = {
-  calcolateScore: function(shots) {
+  calculateScore: function(shots) {
     var score = 0;
 
     shots.forEach(function(shot, index) {
@@ -247,7 +247,7 @@ isStrike: function(shot) {
 replacing the previous code, we get
 ```
 var Bowling = {
-  calcolateScore: function(shots) {
+  calculateScore: function(shots) {
     var punteggio = 0;
     var me = this;
 
@@ -286,7 +286,7 @@ If all the shots we'll have a closing we are entitled to an additional shot. Ass
 ```
   it("game all the frames in the closing and final shot that hit a pin", function() {
     var shots = [[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1,1]];
-    expect(bowling.calcolateScore(shots)).toEqual(182);
+    expect(bowling.calculateScore(shots)).toEqual(182);
   });
 ```
 to overcome even the sixth modify tests, in such a way to compute, in the case of Strike, the first pitch of the next frame. In the event that we are the last frame, however, we will have to add an extra kick.
@@ -294,7 +294,7 @@ to overcome even the sixth modify tests, in such a way to compute, in the case o
 function Bowling() {}
 
 Bowling.prototype = {
-  calcolateScore: function(shots) {
+  calculateScore: function(shots) {
     var me = this;
     var score = 0;
     var firstNextShoto = 0;
@@ -334,3 +334,94 @@ Bowling.prototype = {
   }
 };
 ```
+
+### Step8: game with all the frames in strike
+Position yourself in the next stage of the project by running the following command
+```
+git checkout step8
+```
+If all the shots we'll make an Strike, the end result will be the maximum score of a bowling game that is 300 points
+```
+  it("game with all the frames in strike", function() {
+    var shots = [[10],[10],[10],[10],[10],[10],[10],[10],[10],[10,10,10]];
+    expect(bowling.calculateScore(shots)).toEqual(300);
+  });
+```
+to overcome even the seventh and last modify tests, in such a way to compute, in the case of Strike, the 2 shots of the next frame but in case we are in the last frame, where, instead, we will have only one sommarne next.
+```
+function Bowling() {}
+
+Bowling.prototype = {
+    calculateScore: function(shots) {
+      var me = this;
+      var score = 0;
+      var firstNextShot = 0;
+      var secondNextShot = 0;
+      var lastShot = 0;
+
+      shots.push([0]);
+
+      shots.forEach(function(shot, index) {
+        if (index===10) { return; }
+        if (index===9) {
+          if (me.isSpare(shot) || me.isStrike(shot)) {
+              firstNextShot = shot[2];
+              if (me.isSecondoStrike(shot)) {
+                secondNextShot = 10;
+              } else {
+                secondNextShot = 0;
+              }
+          } else {
+            firstNextShot = 0;
+            secondNextShot = 0;
+          }
+        } else {
+          firstNextShot = shots[index+1][0];
+          secondNextShot = shots[index+1][1];
+        }
+
+        if (me.isStrike(shot)) {
+          //console.log(index+1);
+          if (me.isStrike(shots[index+1])) {
+            if (index===8) {
+                lastShot = shots[index+1][2];
+            } else {
+                lastShot = shots[index+2][0];
+            }
+            score += shot[0] + firstNextShot + lastShot;
+          } else {
+            score += shot[0] + firstNextShot + secondNextShot;
+          }
+        } else if (me.isSpare(shot)) {
+          score += shot[0] + shot[1] + firstNextShot;
+        } else {
+          score += shot[0] + shot[1];
+        }
+      });
+
+      return score;
+    },
+    
+    isSpare: function(shot) {
+      return ((shot[0] + shot[1]) === 10);
+    },
+    
+    isStrike: function(shot) {
+      return (shot[0] === 10);
+    },
+    
+    isSecondoStrike: function(shot) {
+      return (shot[1] === 10);
+    }
+};
+```
+
+### Conclusions
+Our first exercise of Test Drive Development has ended.
+I hope to be able to transfer the benefits that this type of approach brings with it.
+
+I personally think that should be the ABC of every developer because once it became a habit, the quality of the finished product and the personal capacity of each one increases considerably.
+
+If you find errors, inaccuracies, difficulties, failures or simply suggestions to improve it further, do not hesitate to signal them directly into Issues or if you prefer via email at gianluca@ciarcelluti.it
+
+Thank you all :-)
