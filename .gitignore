@@ -1,0 +1,5 @@
+composer.lock
+coverage
+nbproject
+node_modules
+vendor
