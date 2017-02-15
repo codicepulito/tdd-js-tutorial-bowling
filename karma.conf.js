@@ -42,7 +42,7 @@ module.exports = function(config) {
             dir: "coverage/",
             subdir: "phantom",
             file: "phantom.xml"
-        },{ type: 'lcov', subdir: '.' },]
+        },{ type: 'lcov', subdir: '.' }]
     },
 
 
