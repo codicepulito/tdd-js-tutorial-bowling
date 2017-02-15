@@ -5,7 +5,6 @@
 [![Code Climate](https://codeclimate.com/github/gianlucaciarcelluti/tdd-js-tutorial-bowling/badges/gpa.svg)](https://codeclimate.com/github/gianlucaciarcelluti/tdd-js-tutorial-bowling)
 [![Issue Count](https://codeclimate.com/github/gianlucaciarcelluti/tdd-js-tutorial-bowling/badges/issue_count.svg)](https://codeclimate.com/github/gianlucaciarcelluti/tdd-js-tutorial-bowling)
 
-*Read this in other languages: [Italian](README.md).*
 
 This tutorial has the objective to illustrate the approach of TDD oriented to an implementation for successive approximations that leads the developer to focus on the problems as they arise.
 
@@ -37,7 +36,7 @@ npm install
 ### Step1: Start of the project
 Position yourself in the initial project status by running the following command
 ```
-git checkout passo1
+git checkout step1
 ```
 We start with an initial test to verify that all the done vacuum shots give back as a result zero points by writing the following code in the test file / bowlingTest.js
 ```
@@ -97,7 +96,7 @@ PhantomJS 2.1.1 (Mac OS X 0.0.0): Executed 1 of 1 SUCCESS (0.007 secs / 0.004 se
 ### Step2: game with all the shots that hit a pin
 Position yourself in the next stage of the project by running the following command
 ```
-git checkout passo2
+git checkout step2
 ```
 We continue with the addition of the test in the test file / bowlingTest.js to verify that all the done shots hit a pin and that the end result is 20 points
 ```
@@ -116,6 +115,37 @@ var Bowling = {
         score += shots[0] + shots[1];
     });
 
+    return score; 
+  }
+};
+```
+
+### Step3: playing with the first frame when closed and all the others that hit a pin
+Position yourself in the next stage of the project by running the following command
+```
+git checkout step3
+```
+If the first shot we will make a closing (Spare) and all other shots hit a pin, the end result will be to 29 points
+```
+  it("game with the first frame when closed and all the others that hit a pin", function() {
+    var shots = [[9,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]];
+    expect(Bowling.calcolateScore(shots)).toEqual(29);
+  });
+```
+therefore, our function will succeed only to meet the first two tests and to overcome also the third will need to be modified, in such a way to compute, in the event of closure, the first next shot
+```
+var Bowling = {
+  calcolateScore: function(shots) {
+    var score = 0;
+
+    shots.forEach(function(shot, index) {
+      if ((shot[0] + shot[1]) == 10) {
+          score += shot[0] + shot[1] + shots[index+1][0];
+      } else {
+          score += shot[0] + shot[1];
+      }
+    });
+    
     return score; 
   }
 };

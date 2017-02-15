@@ -8,4 +8,9 @@ describe("bowling", function() {
     var shots = [[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]];
     expect(Bowling.calcolateScore(shots)).toEqual(20);
   });
+  
+  it("game with the first frame when closed and all the others that hit a pin", function() {
+    var shots = [[9,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]];
+    expect(Bowling.calcolateScore(shots)).toEqual(29);
+  });
 });
