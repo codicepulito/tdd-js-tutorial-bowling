@@ -93,3 +93,30 @@ tdd-js-tutorial-bowling: ./node_modules/.bin/karma start
 04 01 2017 00:25:54.648:INFO [PhantomJS 2.1.1 (Mac OS X 0.0.0)]: Connected on socket /#flyhaVqaAERUUOljAAAA with id 80882250
 PhantomJS 2.1.1 (Mac OS X 0.0.0): Executed 1 of 1 SUCCESS (0.007 secs / 0.004 secs)
 ```
+
+### Step2: game with all the shots that hit a pin
+Position yourself in the next stage of the project by running the following command
+```
+git checkout passo2
+```
+We continue with the addition of the test in the test file / bowlingTest.js to verify that all the done shots hit a pin and that the end result is 20 points
+```
+  it("game with all the shots that hit a pin", function() {
+    var shots = [[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]];
+    expect(Bowling.calcolateScore(shots)).toEqual(20);
+  });
+```
+therefore, our function will succeed only to meet the first test and to overcome also the second will need to be modified, for example, in the following manner
+```
+var Bowling = {
+  calcolateScore: function(shots) {
+    var score = 0;
+        
+    shots.forEach(function(shots, index) {
+        score += shots[0] + shots[1];
+    });
+
+    return score; 
+  }
+};
+```
