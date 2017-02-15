@@ -1,9 +1,9 @@
 #Javascript Test Drive Development Tutorial #
-[![Build Status](https://travis-ci.org/gianlucaciarcelluti/tdd-js-tutorial-bowling.svg?branch=master)](https://travis-ci.org/gianlucaciarcelluti/tdd-js-tutorial-bowling)
-[![codecov](https://codecov.io/gh/gianlucaciarcelluti/tdd-js-tutorial-bowling/branch/master/graph/badge.svg)](https://codecov.io/gh/gianlucaciarcelluti/tdd-js-tutorial-bowling)
+[![Build Status](https://travis-ci.org/codicepulito/tdd-js-tutorial-bowling.svg?branch=master)](https://travis-ci.org/codicepulito/tdd-js-tutorial-bowling)
+[![codecov](https://codecov.io/gh/codicepulito/tdd-js-tutorial-bowling/branch/master/graph/badge.svg)](https://codecov.io/gh/codicepulito/tdd-js-tutorial-bowling)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
-[![Code Climate](https://codeclimate.com/github/gianlucaciarcelluti/tdd-js-tutorial-bowling/badges/gpa.svg)](https://codeclimate.com/github/gianlucaciarcelluti/tdd-js-tutorial-bowling)
-[![Issue Count](https://codeclimate.com/github/gianlucaciarcelluti/tdd-js-tutorial-bowling/badges/issue_count.svg)](https://codeclimate.com/github/gianlucaciarcelluti/tdd-js-tutorial-bowling)
+[![Code Climate](https://codeclimate.com/github/codicepulito/tdd-js-tutorial-bowling/badges/gpa.svg)](https://codeclimate.com/github/codicepulito/tdd-js-tutorial-bowling)
+[![Issue Count](https://codeclimate.com/github/codicepulito/tdd-js-tutorial-bowling/badges/issue_count.svg)](https://codeclimate.com/github/codicepulito/tdd-js-tutorial-bowling)
 
 *Read this in other languages: [Italian](README.it.md).*
 
