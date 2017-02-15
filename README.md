@@ -150,3 +150,36 @@ var Bowling = {
   }
 };
 ```
+
+### Step4: playing with the first frame in the strike and all the others that hit a pin
+Position yourself in the next stage of the project by running the following command
+```
+git checkout step4
+```
+If the first shot we will make a Strike and all other shots hit a pin, the end result will be 30 points
+```
+  it("game with the first frame in strike and all the others that hit a pin", function() {
+    var shots = [[10],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]];
+    expect(Bowling.calcolateScore(shots)).toEqual(30);
+  });
+```
+to overcome even the fourth modify tests, in such a way to compute, in the case of Strike, the 2 shots of the next Frame
+```
+var Bowling = {
+  calcolateScore: function(shots) {
+    var score = 0;
+
+    shots.forEach(function(shot, index) {
+      if (shot[0] == 10) {
+        score += shot[0] + shots[index+1][0] + shots[index+1][1];
+      } else if ((shot[0] + shot[1]) == 10) {
+        score += shot[0] + shot[1] + shots[index+1][0];
+      } else {
+          score += shot[0] + shot[1];
+      }
+    });
+    
+    return score; 
+  }
+};
+```
