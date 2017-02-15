@@ -418,6 +418,12 @@ Bowling.prototype = {
 
 ### Step9: refactoring
 Cleaned up the code by reducing cyclomatic complexity and readability
+
+Position yourself in the next stage of the project by running the following command
+```
+git checkout step9
+```
+
 ```
 function Bowling () {}
 
