@@ -226,3 +226,54 @@ var Bowling = {
   }
 };
 ```
+### STEP6: refactoring
+Position yourself in the next stage of the project by running the following command
+```
+git checkout step6
+```
+Analyzing the code, we can note that there are cases that more than once are checked, such as the case of the Strike (shot [0] == 10) and the case of the Spare ((shot [0] + shot [1] ) == 10); philosophy [DRY] (https://it.wikipedia.org/wiki/Don't_Repeat_Yourself) (Do not repeat yourself) suggests that we make a Refactoring extracting repeated checks within a designated external function.
+The functions may be so:
+```
+isSpare: function(shot) {
+  return ((shot[0] + shot[1]) === 10);
+},
+```
+and
+```
+isStrike: function(shot) {
+  return (shot[0] === 10);
+}
+```
+replacing the previous code, we get
+```
+var Bowling = {
+  calcolateScore: function(shots) {
+    var punteggio = 0;
+    var me = this;
+
+    shots.forEach(function(shot, index) {
+        if (me.isStrike(shot)) {
+            if (me.isStrike(shots[index+1])) {
+                punteggio += shot[0] + shots[index+1][0] + shots[index+2][0];
+            } else {
+                punteggio += shot[0] + shots[index+1][0] + shots[index+1][1];
+            }
+        } else if (me.isSpare(shot)) {
+            punteggio += shot[0] + shot[1] + shots[index+1][0];
+        } else {
+            punteggio += shot[0] + shot[1];
+        }
+    });
+
+    return punteggio;
+  },
+  
+  isSpare: function(shot) {
+    return ((shot[0] + shot[1]) === 10);
+  },
+    
+  isStrike: function(shot) {
+    return (shot[0] === 10);
+  }
+};
+```
