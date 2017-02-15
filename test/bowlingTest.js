@@ -18,4 +18,9 @@ describe("bowling", function() {
     var shots = [[10],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]];
     expect(Bowling.calcolateScore(shots)).toEqual(30);
   });
+  
+  it("game with the first two frames in strike and all the others that hit a pin", function() {
+    var shots = [[10],[10],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]];
+    expect(Bowling.calcolateScore(shots)).toEqual(49);
+  });
 });

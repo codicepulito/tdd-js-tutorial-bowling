@@ -15,6 +15,13 @@ Through the use of the TDD method, the solution is built in stages and increment
 Git tags:
 
 - step1: initial project state
+- step2: game with all the shots that hit a pin
+- step3: game with the first frame in Spare and all the others that hit a pin
+- step4: game with the first frame in Strike and all the others that hit a pin
+- step5: game with the first two frames in Strike and all the others that hit a pin
+- step6: refactoring
+- step7: game all the frames in Spare and final shot that hit a pin
+- step8: game all the frames in strike
 
 The practice of TDD takes place in three distinct phases: Red Flag, Green Flag and Refactoring.
 The first phase (Red Flag) requires that the test wrote fails his first run, ensuring that the test itself was well written.
@@ -172,6 +179,42 @@ var Bowling = {
     shots.forEach(function(shot, index) {
       if (shot[0] == 10) {
         score += shot[0] + shots[index+1][0] + shots[index+1][1];
+      } else if ((shot[0] + shot[1]) == 10) {
+        score += shot[0] + shot[1] + shots[index+1][0];
+      } else {
+          score += shot[0] + shot[1];
+      }
+    });
+    
+    return score; 
+  }
+};
+```
+### Step5: playing with the first two frames in the strike and all the others that hit a pin
+Position yourself in the next stage of the project by running the following command
+```
+git checkout step5
+```
+If the first shot we will make a Strike and all other shots hit a pin, the end result will be 49 points
+```
+  it("game with the first two frames in strike and all the others that hit a pin", function() {
+    var shots = [[10],[10],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]];
+    expect(Bowling.calcolateScore(shots)).toEqual(49);
+  });
+```
+to overcome even the fifth modify tests, in such a way to compute, in the case of Strike, the 2 shots of the next Frame
+```
+var Bowling = {
+  calcolateScore: function(shots) {
+    var score = 0;
+
+    shots.forEach(function(shot, index) {
+      if (shot[0] == 10) {
+        if (shots[index+1][0] == 10) {
+            score += shot[0] + shots[index+1][0] + shots[index+2][0];
+        } else {
+            score += shot[0] + shots[index+1][0] + shots[index+1][1];
+        }
       } else if ((shot[0] + shot[1]) == 10) {
         score += shot[0] + shot[1] + shots[index+1][0];
       } else {
