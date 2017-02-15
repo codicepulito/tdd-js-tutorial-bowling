@@ -1,0 +1,20 @@
+{
+    "license": "GPL-3.0",
+    "repository": "https://github.com/codicepulito/tdd-js-tutorial-bowling",
+    "dependencies": {
+        "jasmine-core": "*",
+        "phantomjs-prebuilt": "*",
+        "karma-coverage": "*"
+    },
+    "devDependencies": {
+        "karma": "*",
+        "karma-jasmine": "*",
+        "karma-phantomjs-launcher": "*"
+    },
+    "scripts": {
+        "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
+    },
+    "standard": {
+        "globals": [ "beforeEach", "describe", "expect", "it" ]
+    }
+}
