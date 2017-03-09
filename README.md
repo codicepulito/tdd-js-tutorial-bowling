@@ -4,6 +4,7 @@
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 [![Code Climate](https://codeclimate.com/github/codicepulito/tdd-js-tutorial-bowling/badges/gpa.svg)](https://codeclimate.com/github/codicepulito/tdd-js-tutorial-bowling)
 [![Issue Count](https://codeclimate.com/github/codicepulito/tdd-js-tutorial-bowling/badges/issue_count.svg)](https://codeclimate.com/github/codicepulito/tdd-js-tutorial-bowling)
+[![API Doc](https://doclets.io/codicepulito/tdd-js-tutorial-bowling/master.svg)](https://doclets.io/codicepulito/tdd-js-tutorial-bowling/master)
 
 *Read this in other languages: [Italian](README.it.md).*
 
