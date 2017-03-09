@@ -1,4 +1,4 @@
-#Javascript Test Drive Development Tutorial #
+#Javascript Test Driven Development Tutorial #
 [![Build Status](https://travis-ci.org/codicepulito/tdd-js-tutorial-bowling.svg?branch=master)](https://travis-ci.org/codicepulito/tdd-js-tutorial-bowling)
 [![codecov](https://codecov.io/gh/codicepulito/tdd-js-tutorial-bowling/branch/master/graph/badge.svg)](https://codecov.io/gh/codicepulito/tdd-js-tutorial-bowling)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
@@ -547,7 +547,7 @@ Bowling.prototype = {
 ```
 
 ### Conclusions
-Our first exercise of Test Drive Development has ended.
+Our first exercise of Test Driven Development has ended.
 I hope to be able to transfer the benefits that this type of approach brings with it.
 
 I personally think that should be the ABC of every developer because once it became a habit, the quality of the finished product and the personal capacity of each one increases considerably.
