@@ -1,4 +1,4 @@
-#Javascript Test Driven Development Tutorial #
+# Javascript Test Driven Development Tutorial #
 [![Build Status](https://travis-ci.org/codicepulito/tdd-js-tutorial-bowling.svg?branch=master)](https://travis-ci.org/codicepulito/tdd-js-tutorial-bowling)
 [![codecov](https://codecov.io/gh/codicepulito/tdd-js-tutorial-bowling/branch/master/graph/badge.svg)](https://codecov.io/gh/codicepulito/tdd-js-tutorial-bowling)
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
