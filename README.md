@@ -8,11 +8,11 @@
 
 *Read this in other languages: [Italian](README.it.md).*
 
-This tutorial has the objective to illustrate the approach of TDD oriented to an implementation for successive approximations that leads the developer to focus on the problems as they arise.
+This tutorial is intended to illustrate the approach of TDD oriented to an implementation for successive approximations that leads the developer to focus on the problems as they arise.
 
 Even today, many developers are used to carry out a comprehensive analysis of the development of a project at last to find a working solution to implement; this approach poses great difficulties when the problem to be solved is complex, in particular by discouraging people who have not had the opportunity to experience appropriate experience.
 
-Through the use of the TDD method, the solution is built in stages and incremental approximations that make it much more simple and within the reach of all the management of a complex problem.
+Through the use of the TDD method, the solution is built in stages and incremental approximations that make it much more simple to everyone the management of a complex problem.
 
 Git tags:
 
@@ -29,7 +29,7 @@ Git tags:
 The practice of TDD takes place in three distinct phases: Red Flag, Green Flag and Refactoring.
 The first phase (Red Flag) requires that the test wrote fails his first run, ensuring that the test itself was well written.
 
-The second phase requires writing code you are testing, making sure to write what is necessary to perform the test successfully
+The second phase requires writing code you are testing, making sure to write **only what is necessary** to perform the test successfully
 
 In the third and final phase, we can focus on the analysis of the code you just wrote, verifying the possibility to improve its readability and elegance.
 
