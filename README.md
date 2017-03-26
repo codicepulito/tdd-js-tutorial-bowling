@@ -29,7 +29,7 @@ Git tags:
 The practice of TDD takes place in three distinct phases: Red Flag, Green Flag and Refactoring.
 The first phase (Red Flag) requires that the test wrote fails his first run, ensuring that the test itself was well written.
 
-The second phase requires writing code you are testing, making sure to write **only what is necessary** , following the [YAGNI](https://en.wikipedia.org/wiki/You_aren't_gonna_need_it) principle, to perform the test successfully.
+The second phase requires writing code you are testing, making sure to write **only what is necessary**, following the [YAGNI](https://en.wikipedia.org/wiki/You_aren't_gonna_need_it) principle, to perform the test successfully.
 
 In the third and final phase, we can focus on the analysis of the code you just wrote, verifying the possibility to improve its readability and elegance.
 
