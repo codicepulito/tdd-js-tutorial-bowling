@@ -12,7 +12,7 @@
         "karma-phantomjs-launcher": "*"
     },
     "scripts": {
-        "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
+        "test": "./node_modules/.bin/karma start karma.conf.js --single-run --browsers PhantomJS"
     },
     "standard": {
         "globals": [ "beforeEach", "describe", "expect", "it" ]

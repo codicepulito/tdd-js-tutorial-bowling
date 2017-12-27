@@ -22,11 +22,7 @@ Bowling.prototype = {
 
       if (me.isStrike(shot)) {        
         if (me.isStrike(shots[index + 1])) {
-          if (index === 8) {
-            lastShot = shots[index + 1][2]
-          } else {
-            lastShot = shots[index + 2][0]
-          }
+          lastShot = (index === 8) ? shots[index + 1][2] : shots[index + 2][0]
           score += shot[0] + firstNextShot + lastShot
         } else {
           score += shot[0] + firstNextShot + secondNextShot
