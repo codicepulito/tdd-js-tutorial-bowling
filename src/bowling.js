@@ -25,10 +25,10 @@ Bowling.prototype = {
  * @param {type} index
  * @returns {Number} Value of the second component of score
  */
-  calculateSecondComponent: function(shots, index) {
-    var secondScore = 0
+  calculateSecondComponent: function(shots, index) {    
     var me = this
     var shot = shots[index]
+    var secondScore = shot[1]
     var shotNext = shots[index + 1] 
     var firstNextShot = me.calculateFirstNextShot(shots, index)
     if (me.isStrike(shot) && (me.isStrike(shotNext)) && (index === 8)) {
@@ -39,9 +39,7 @@ Bowling.prototype = {
       secondScore = firstNextShot + me.calculateSecondNextShot(shots, index)
     } else if (me.isSpare(shot)) {
       secondScore = shot[1] + firstNextShot
-    } else {
-      secondScore = shot[1]
-    }
+    } 
     return secondScore;
   },
   
