@@ -14,7 +14,6 @@ Bowling.prototype = {
     var lastShot = 0
 
     shots.push([0])
-
     for (var index = 0; index < 10; index++) {
       var shot = shots[index]
       var shotNext = shots[index + 1]      
