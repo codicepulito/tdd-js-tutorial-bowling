@@ -9,31 +9,42 @@ Bowling.prototype = {
   calculateScore: function (shots) {
     var me = this
     var score = 0
-    var firstNextShot = 0
-    var secondNextShot = 0
-
+    
     shots.push([0])
     for (var index = 0; index < 10; index++) {
-      var shot = shots[index]
-      var shotNext = shots[index + 1]      
-      firstNextShot = me.calculateFirstNextShot(shots, index)      
-
-      if (me.isStrike(shot) && (me.isStrike(shotNext)) && (index === 8)) {
-        score += shot[0] + firstNextShot + shotNext[2]
-      } else if (me.isStrike(shot) && (me.isStrike(shotNext))) {
-        score += shot[0] + firstNextShot + shots[index + 2][0]
-      } else if (me.isStrike(shot)) {
-        score += shot[0] + firstNextShot + me.calculateSecondNextShot(shots, index)
-      } else if (me.isSpare(shot)) {
-        score += shot[0] + shot[1] + firstNextShot
-      } else {
-        score += shot[0] + shot[1]
-      }
+      var shot = shots[index]            
+      score += shot[0] + me.calculateSecondComponent(shots, index)
     }
 
     return score
   },
 
+/**
+ * Calculate the second component of the score for each frame
+ * @param {type} shots
+ * @param {type} index
+ * @returns {Number} Value of the second component of score
+ */
+  calculateSecondComponent: function(shots, index) {
+    var secondScore = 0
+    var me = this
+    var shot = shots[index]
+    var shotNext = shots[index + 1] 
+    var firstNextShot = me.calculateFirstNextShot(shots, index)
+    if (me.isStrike(shot) && (me.isStrike(shotNext)) && (index === 8)) {
+      secondScore = firstNextShot + shotNext[2]
+    } else if (me.isStrike(shot) && (me.isStrike(shotNext))) {
+      secondScore = firstNextShot + shots[index + 2][0]
+    } else if (me.isStrike(shot)) {
+      secondScore = firstNextShot + me.calculateSecondNextShot(shots, index)
+    } else if (me.isSpare(shot)) {
+      secondScore = shot[1] + firstNextShot
+    } else {
+      secondScore = shot[1]
+    }
+    return secondScore;
+  },
+  
   /**
    * Calculates the score of the second shot in the next frame.
    * @param {array} shots Array composed of 10 elements, each of two shots.
