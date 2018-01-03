@@ -22,6 +22,8 @@ Bowling.prototype = {
         score += shot[0] + firstNextShot + shotNext[2]
       } else if (me.isStrike(shot) && (me.isStrike(shotNext))) {
         score += shot[0] + firstNextShot + shots[index + 2][0]
+      } else if (me.isStrike(shot)) {
+        score += shot[0] + firstNextShot + me.calculateSecondNextShot(shots, index)
       } else if (me.isSpare(shot)) {
         score += shot[0] + shot[1] + firstNextShot
       } else {
