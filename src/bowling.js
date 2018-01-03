@@ -17,23 +17,19 @@ Bowling.prototype = {
 
     for (var index = 0; index < 10; index++) {
       var shot = shots[index]
-      var shotNext = shots[index + 1]
-      var isStrikeCurrent = me.isStrike(shot);
-      var isStrikeNext = me.isStrike(shotNext);
-      var isSpareCurrent = me.isSpare(shot)
+      var shotNext = shots[index + 1]      
       firstNextShot = me.calculateFirstNextShot(shots, index)
       secondNextShot = me.calculateSecondNextShot(shots, index)
 
-      if (isStrikeCurrent) {        
-        if (isStrikeNext) {
+      if (me.isStrike(shot)) {        
+        if (me.isStrike(shotNext)) {
+          secondNextShot = shots[index + 2][0]
           if (index === 8) {
             secondNextShot = shotNext[2]
-          } else {
-            secondNextShot = shots[index + 2][0]
-          }          
+          }         
         } 
         score += shot[0] + firstNextShot + secondNextShot
-      } else if (isSpareCurrent) {
+      } else if (me.isSpare(shot)) {
         score += shot[0] + shot[1] + firstNextShot
       } else {
         score += shot[0] + shot[1]
