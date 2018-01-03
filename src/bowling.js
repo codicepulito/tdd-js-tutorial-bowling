@@ -47,14 +47,12 @@ Bowling.prototype = {
     var me = this
     var score = 0
     var shot = shots[index]
-    if (index === 9) {
-      if (me.isSpare(shot) || me.isStrike(shot)) {
-        if (me.isSecondoStrike(shot)) {
-          score = 10
-        } else {
-          score = 0
-        }
-      }
+    if (
+        (index === 9) && 
+        (me.isSpare(shot) || me.isStrike(shot)) && 
+        (me.isSecondoStrike(shot))
+        ) {      
+      score = 10               
     } else {
       score = shots[index + 1][1]
     }
