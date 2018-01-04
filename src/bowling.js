@@ -9,82 +9,69 @@ Bowling.prototype = {
   calculateScore: function (shots) {
     var me = this
     var score = 0
-    
-    shots.push([0])
+        
+    shots.push([0,0])    
     for (var index = 0; index < 10; index++) {
-      var shot = shots[index]            
-      score += shot[0] + me.calculateSecondComponent(shots, index)
+      var shot = shots[index]   
+      var isStrike = me.isStrike(shot)
+      var isSpare = me.isSpare(shot)
+                  
+      if (isStrike) {
+        score += 10 + me.calculateStrikeBonus(shots, index)
+      } else if (isSpare) {
+        score += 10 + me.calculateSpareBonus(shots, index)
+      } else {
+        score += me.calcolaPuntiFrame(shot, index)
+      }      
     }
 
     return score
   },
 
-/**
- * Calculate the second component of the score for each frame
- * @param {type} shots
- * @param {type} index
- * @returns {Number} Value of the second component of score
+ /**
+ * Calculate the bonus for spare
+ * @param {array} shots Array composed of 10 elements, each of two shots.
+ * @param {number} index Frame index
+ * @returns {number} Bonus value
  */
-  calculateSecondComponent: function(shots, index) {    
-    var me = this
-    var shot = shots[index]
-    var secondScore = shot[1]
-    var shotNext = shots[index + 1] 
-    var firstNextShot = me.calculateFirstNextShot(shots, index)
-    if (me.isStrike(shot) && (me.isStrike(shotNext)) && (index === 8)) {
-      secondScore = firstNextShot + shotNext[2]
-    } else if (me.isStrike(shot) && (me.isStrike(shotNext))) {
-      secondScore = firstNextShot + shots[index + 2][0]
-    } else if (me.isStrike(shot)) {
-      secondScore = firstNextShot + me.calculateSecondNextShot(shots, index)
-    } else if (me.isSpare(shot)) {
-      secondScore = shot[1] + firstNextShot
-    } 
-    return secondScore;
+  calculateSpareBonus: function(shots, index) {
+    if (index === 9) {
+      return shots[index][2]
+    } else {
+      return shots[index + 1][0]
+    }
   },
   
-  /**
-   * Calculates the score of the second shot in the next frame.
-   * @param {array} shots Array composed of 10 elements, each of two shots.
-   * @param {number} index indicating the frame in which you are located
-   * @return {number} score for the second shot of the next frame.
-   */
-  calculateSecondNextShot: function (shots, index) {
-    var me = this
-    var score = 0
-    var shot = shots[index]
-    if (
-        (index === 9) && 
-        (me.isSpare(shot) || me.isStrike(shot)) && 
-        (me.isSecondoStrike(shot))
-        ) {      
-      score = 10               
-    } else {
-      score = shots[index + 1][1]
+ /**
+ * Calculate the bonus for Strike
+ * @param {array} shots Array composed of 10 elements, each of two shots.
+ * @param {number} index Frame index
+ * @returns {number} Bonus value
+ */
+  calculateStrikeBonus: function(shots, index) {
+    var shotNext = shots[index + 1] 
+    var bonus = 0
+            
+    bonus = this.calcolaPuntiFrame(shotNext, index+1) 
+    if (this.isStrike(shotNext)) { 
+      bonus = 10 + shots[index+2][0] 
     }
-    return score
+    if (index == 8) {
+      bonus = 10 + shots[index+1][0] 
+    }
+    if (index == 9) {
+      bonus = this.calcolaPuntiFrame(shots[index], index) 
+    }        
+    return bonus
   },
 
-  /**
-   * Calculates the score of the first shot in the next frame.
-   * @param {array} shots Array composed of 10 elements, each of two shots.
-   * @param {number} index indicating the frame in which you are located
-   * @return {number} score for the first shot of the next frame.
-   */
-  calculateFirstNextShot: function (shots, index) {
-    var me = this
-    var score = 0
-    var shot = shots[index]
-    if (index === 9) {
-      if (me.isSpare(shot) || me.isStrike(shot)) {
-        score = shot[2]
-      }
-    } else {
-      score = shots[index + 1][0]
-    }
-    return score
+  calcolaPuntiFrame: function(shot, index) {
+    var punteggio =  shot[0]
+    if (shot[1]) {
+      punteggio += shot[1]
+    }   
+    return punteggio
   },
-
   /**
   * Checking whether a frame is a Spare.
   * Is a Spare when the sum of the two shots results in 10.
@@ -103,14 +90,5 @@ Bowling.prototype = {
   */
   isStrike: function (shot) {
     return (shot[0] === 10)
-  },
-
-  /**
-  * Check if the last shot of the last frame is a strike.
-  * @param {array} shot Array with the results of the two shots
-  * @return {boolean} True if it is a Strike false otherwise
-  */
-  isSecondoStrike: function (shot) {
-    return (shot[1] === 10)
   }
 }

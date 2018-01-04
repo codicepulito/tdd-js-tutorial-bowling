@@ -29,7 +29,7 @@ describe("bowling", function() {
     var shots = [[10],[10],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1],[1,1]];
     expect(bowling.calculateScore(shots)).toEqual(49);
   });
-  
+   
   it("game with all the frames in the closing and final shot that hit a pin", function() {
     var shots = [[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1],[9,1,1]];
     expect(bowling.calculateScore(shots)).toEqual(182);
@@ -39,4 +39,5 @@ describe("bowling", function() {
     var shots = [[10],[10],[10],[10],[10],[10],[10],[10],[10],[10,10,10]];
     expect(bowling.calculateScore(shots)).toEqual(300);
   });
+  
 });
